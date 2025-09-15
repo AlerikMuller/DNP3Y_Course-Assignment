@@ -110,6 +110,35 @@
         "build": {
           "build/net8.0/xunit.runner.visualstudio.props": {}
         }
+      },
+      "Entities/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "FluentAssertions": "8.6.0",
+          "xunit": "2.9.3"
+        },
+        "compile": {
+          "bin/placeholder/Entities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Entities.dll": {}
+        }
+      },
+      "RepositoryContracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Entities": "1.0.0",
+          "FluentAssertions": "8.6.0",
+          "xunit": "2.9.3"
+        },
+        "compile": {
+          "bin/placeholder/RepositoryContracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RepositoryContracts.dll": {}
+        }
       }
     }
   },
@@ -278,11 +307,23 @@
         "xunit.runner.visualstudio.3.1.4.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "Entities/1.0.0": {
+      "type": "project",
+      "path": "../Entities/Entities.csproj",
+      "msbuildProject": "../Entities/Entities.csproj"
+    },
+    "RepositoryContracts/1.0.0": {
+      "type": "project",
+      "path": "../RepositoryContracts/RepositoryContracts.csproj",
+      "msbuildProject": "../RepositoryContracts/RepositoryContracts.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "Entities >= 1.0.0",
       "FluentAssertions >= 8.6.0",
+      "RepositoryContracts >= 1.0.0",
       "xunit >= 2.9.3",
       "xunit.runner.visualstudio >= 3.1.4"
     ]
@@ -293,11 +334,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alerik Muller\\RiderProjects\\DNPAssingments\\Entities\\Entities.csproj",
-      "projectName": "Entities",
-      "projectPath": "C:\\Users\\Alerik Muller\\RiderProjects\\DNPAssingments\\Entities\\Entities.csproj",
+      "projectUniqueName": "C:\\Users\\Alerik Muller\\RiderProjects\\DNPAssingments\\InMemoryRepositories\\InMemoryRepositories.csproj",
+      "projectName": "InMemoryRepositories",
+      "projectPath": "C:\\Users\\Alerik Muller\\RiderProjects\\DNPAssingments\\InMemoryRepositories\\InMemoryRepositories.csproj",
       "packagesPath": "C:\\Users\\Alerik Muller\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Alerik Muller\\RiderProjects\\DNPAssingments\\Entities\\obj\\",
+      "outputPath": "C:\\Users\\Alerik Muller\\RiderProjects\\DNPAssingments\\InMemoryRepositories\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Alerik Muller\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -311,7 +352,14 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Alerik Muller\\RiderProjects\\DNPAssingments\\Entities\\Entities.csproj": {
+              "projectPath": "C:\\Users\\Alerik Muller\\RiderProjects\\DNPAssingments\\Entities\\Entities.csproj"
+            },
+            "C:\\Users\\Alerik Muller\\RiderProjects\\DNPAssingments\\RepositoryContracts\\RepositoryContracts.csproj": {
+              "projectPath": "C:\\Users\\Alerik Muller\\RiderProjects\\DNPAssingments\\RepositoryContracts\\RepositoryContracts.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
