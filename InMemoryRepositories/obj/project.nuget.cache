@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IAMOdLIi2bs=",
+  "dgSpecHash": "XalS5SLtzzY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Alerik Muller\\RiderProjects\\DNPAssingments\\InMemoryRepositories\\InMemoryRepositories.csproj",
+  "projectFilePath": "C:\\Users\\Alerik Muller\\RiderProjects\\GreenInstalators\\DNP3Y_Course-Assignment\\InMemoryRepositories\\InMemoryRepositories.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alerik Muller\\.nuget\\packages\\fluentassertions\\8.6.0\\fluentassertions.8.6.0.nupkg.sha512",
     "C:\\Users\\Alerik Muller\\.nuget\\packages\\xunit\\2.9.3\\xunit.2.9.3.nupkg.sha512",

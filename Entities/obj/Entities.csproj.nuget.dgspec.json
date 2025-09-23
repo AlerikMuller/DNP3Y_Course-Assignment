@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alerik Muller\\RiderProjects\\DNPAssingments\\Entities\\Entities.csproj": {}
+    "C:\\Users\\Alerik Muller\\RiderProjects\\GreenInstalators\\DNP3Y_Course-Assignment\\Entities\\Entities.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alerik Muller\\RiderProjects\\DNPAssingments\\Entities\\Entities.csproj": {
+    "C:\\Users\\Alerik Muller\\RiderProjects\\GreenInstalators\\DNP3Y_Course-Assignment\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alerik Muller\\RiderProjects\\DNPAssingments\\Entities\\Entities.csproj",
+        "projectUniqueName": "C:\\Users\\Alerik Muller\\RiderProjects\\GreenInstalators\\DNP3Y_Course-Assignment\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "C:\\Users\\Alerik Muller\\RiderProjects\\DNPAssingments\\Entities\\Entities.csproj",
+        "projectPath": "C:\\Users\\Alerik Muller\\RiderProjects\\GreenInstalators\\DNP3Y_Course-Assignment\\Entities\\Entities.csproj",
         "packagesPath": "C:\\Users\\Alerik Muller\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alerik Muller\\RiderProjects\\DNPAssingments\\Entities\\obj\\",
+        "outputPath": "C:\\Users\\Alerik Muller\\RiderProjects\\GreenInstalators\\DNP3Y_Course-Assignment\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Alerik Muller\\AppData\\Roaming\\NuGet\\NuGet.Config"

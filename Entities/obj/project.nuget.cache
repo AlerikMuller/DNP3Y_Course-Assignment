@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QX+mpDEeAl4=",
+  "dgSpecHash": "FN1uMbqV5+k=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Alerik Muller\\RiderProjects\\DNPAssingments\\Entities\\Entities.csproj",
+  "projectFilePath": "C:\\Users\\Alerik Muller\\RiderProjects\\GreenInstalators\\DNP3Y_Course-Assignment\\Entities\\Entities.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alerik Muller\\.nuget\\packages\\fluentassertions\\8.6.0\\fluentassertions.8.6.0.nupkg.sha512",
     "C:\\Users\\Alerik Muller\\.nuget\\packages\\xunit\\2.9.3\\xunit.2.9.3.nupkg.sha512",
