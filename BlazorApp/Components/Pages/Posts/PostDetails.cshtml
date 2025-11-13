@@ -1,0 +1,136 @@
+@page "/posts/{Id:int}"
+@inject BlazorApp.Http.IPostService PostService
+@inject BlazorApp.Http.ICommentService CommentService
+
+<h3>Post details</h3>
+
+@if (isLoading)
+{
+    <p>Loading...</p>
+}
+else if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p style="color:red">@errorMessage</p>
+}
+else if (post is null)
+{
+    <p>Post not found.</p>
+}
+else
+{
+    <h4>@post.Title</h4>
+    <p>@post.Body</p>
+    @if (!string.IsNullOrWhiteSpace(post.AuthorUserName))
+    {
+        <p><strong>Author:</strong> @post.AuthorUserName</p>
+    }
+
+    <h5>Comments (@comments.Count)</h5>
+    @if (comments.Count == 0)
+    {
+        <p>No comments yet.</p>
+    }
+    else
+    {
+        <ul>
+            @foreach (var c in comments)
+            {
+                <li>
+                    <p>@c.Body</p>
+                    @if (!string.IsNullOrWhiteSpace(c.AuthorUserName))
+                    {
+                        <small>by @c.AuthorUserName</small>
+                    }
+                </li>
+            }
+        </ul>
+    }
+
+    <h5>Add comment</h5>
+    <textarea rows="4" cols="60" @bind="newCommentBody"></textarea><br />
+    @if (!string.IsNullOrEmpty(commentError))
+    {
+        <p style="color:red">@commentError</p>
+    }
+    <button @onclick="AddCommentAsync">Add comment</button>
+}
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    private ApiContracts.DTOs.PostDto? post;
+    private List<ApiContracts.DTOs.CommentDto> comments = new();
+
+    private bool isLoading = true;
+    private string errorMessage = string.Empty;
+
+    private string newCommentBody = string.Empty;
+    private string commentError = string.Empty;
+
+    private const int DummyUserId = 1; // until auth
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await LoadAsync();
+    }
+
+    private async Task LoadAsync()
+    {
+        isLoading = true;
+        errorMessage = string.Empty;
+
+        try
+        {
+            post = await PostService.GetPostByIdAsync(Id, includeAuthor: true, includeComments: true);
+            if (post is null)
+                return;
+
+            // If your PostDto already includes Comments list:
+            if (post.Comments is not null && post.Comments.Any())
+                comments = post.Comments.ToList();
+            else
+            {
+                // Or explicitly fetch:
+                var result = await CommentService.GetCommentsForPostAsync(Id);
+                comments = result.ToList();
+            }
+        }
+        catch (Exception e)
+        {
+            errorMessage = e.Message;
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task AddCommentAsync()
+    {
+        commentError = string.Empty;
+
+        if (string.IsNullOrWhiteSpace(newCommentBody))
+        {
+            commentError = "Comment cannot be empty.";
+            return;
+        }
+
+        try
+        {
+            var dto = new ApiContracts.DTOs.CreateCommentDto
+            {
+                Body = newCommentBody,
+                PostId = Id,
+                UserId = DummyUserId
+            };
+
+            var created = await CommentService.AddCommentAsync(dto);
+            comments.Add(created);
+            newCommentBody = string.Empty;
+        }
+        catch (Exception e)
+        {
+            commentError = e.Message;
+        }
+    }
+}

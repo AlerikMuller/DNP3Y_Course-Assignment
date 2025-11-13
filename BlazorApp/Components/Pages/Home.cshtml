@@ -1,0 +1,22 @@
+@page "/"
+@inject NavigationManager NavMgr
+
+<PageTitle>Home</PageTitle>
+
+<h1>Reddit Clone</h1>
+
+<AuthorizeView>
+    <Authorized>
+        <h3>Hello, @context.User.Identity?.Name</h3>
+    </Authorized>
+    <NotAuthorized>
+        <p>You are not logged in.</p>
+        <button @onclick='() => NavMgr.NavigateTo("/login")'>Go to login</button>
+    </NotAuthorized>
+</AuthorizeView>
+
+<p>
+    <a href="/posts">View posts</a> |
+    <a href="/posts/create">Create post</a> |
+    <a href="/register">Register</a>
+</p>

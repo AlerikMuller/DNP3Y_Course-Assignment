@@ -1,0 +1,52 @@
+@page "/login"
+@using BlazorApp.Auth
+@inject AuthenticationStateProvider AuthProvider
+@inject NavigationManager NavMgr
+
+<h3>Login</h3>
+
+<AuthorizeView>
+    <NotAuthorized>
+        <div>
+            <label>Username:</label>
+            <input @bind="userName" />
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="password" @bind="password" />
+        </div>
+
+        @if (!string.IsNullOrEmpty(errorLabel))
+        {
+            <p style="color:red">@errorLabel</p>
+        }
+
+        <button @onclick="LoginAsync">Log in</button>
+    </NotAuthorized>
+
+    <Authorized>
+        <h4>You are already logged in as @context.User.Identity?.Name</h4>
+    </Authorized>
+</AuthorizeView>
+
+@code {
+    private string userName = string.Empty;
+    private string password = string.Empty;
+    private string errorLabel = string.Empty;
+
+    private async Task LoginAsync()
+    {
+        errorLabel = string.Empty;
+
+        try
+        {
+            var provider = (SimpleAuthProvider)AuthProvider;
+            await provider.LoginAsync(userName, password);
+            NavMgr.NavigateTo("/");
+        }
+        catch (Exception e)
+        {
+            errorLabel = $"Error: {e.Message}";
+        }
+    }
+}

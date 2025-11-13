@@ -1,0 +1,73 @@
+@page "/posts"
+@inject BlazorApp.Http.IPostService PostService
+@inject NavigationManager NavManager
+
+<h3>Posts</h3>
+
+<input placeholder="Filter by title" @bind="titleFilter" />
+<button @onclick="LoadPostsAsync">Search</button>
+
+@if (isLoading)
+{
+    <p>Loading...</p>
+}
+else if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p style="color:red">@errorMessage</p>
+}
+else if (posts.Count == 0)
+{
+    <p>No posts yet.</p>
+}
+else
+{
+    <ul>
+        @foreach (var p in posts)
+        {
+            <li>
+                <a @onclick='() => NavManager.NavigateTo($"/posts/{p.Id}")'>
+                    @p.Title
+                </a>
+                @if (!string.IsNullOrWhiteSpace(p.AuthorUserName))
+                {
+                    <span> (by @p.AuthorUserName)</span>
+                }
+            </li>
+        }
+    </ul>
+}
+
+@code {
+    private List<ApiContracts.DTOs.PostDto> posts = new();
+    private bool isLoading;
+    private string errorMessage = string.Empty;
+    private string titleFilter = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadPostsAsync();
+    }
+
+    private async Task LoadPostsAsync()
+    {
+        isLoading = true;
+        errorMessage = string.Empty;
+
+        try
+        {
+            var result = await PostService.GetPostsAsync(
+                string.IsNullOrWhiteSpace(titleFilter) ? null : titleFilter,
+                null);
+
+            posts = result.ToList();
+        }
+        catch (Exception e)
+        {
+            errorMessage = e.Message;
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+}

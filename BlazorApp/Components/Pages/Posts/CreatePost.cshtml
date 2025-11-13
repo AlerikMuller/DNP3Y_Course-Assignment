@@ -1,0 +1,60 @@
+@page "/posts/create"
+@inject BlazorApp.Http.IPostService PostService
+
+<h3>Create post</h3>
+
+<div>
+    <label>Title:</label>
+    <input @bind="title" />
+</div>
+<div>
+    <label>Body:</label><br />
+    <textarea @bind="body" rows="6" cols="60"></textarea>
+</div>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p style="color:red">@errorMessage</p>
+}
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <p style="color:green">@successMessage</p>
+}
+
+<button @onclick="CreatePostAsync">Create</button>
+
+@code {
+    private string title = string.Empty;
+    private string body = string.Empty;
+    private string errorMessage = string.Empty;
+    private string successMessage = string.Empty;
+
+    // Until Assignment 6’s auth, you can hardcode a user id here, e.g. 1.
+    private const int DummyUserId = 1;
+
+    private async Task CreatePostAsync()
+    {
+        errorMessage = string.Empty;
+        successMessage = string.Empty;
+
+        try
+        {
+            var dto = new ApiContracts.DTOs.CreatePostDto
+            {
+                Title = title,
+                Body = body,
+                UserId = DummyUserId
+            };
+
+            var created = await PostService.AddPostAsync(dto);
+            successMessage = $"Created post with id {created.Id}";
+            title = string.Empty;
+            body = string.Empty;
+        }
+        catch (Exception e)
+        {
+            errorMessage = e.Message;
+        }
+    }
+}

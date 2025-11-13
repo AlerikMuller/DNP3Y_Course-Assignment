@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ApiContracts\ApiContracts.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Components\Pages\Counter.razor" />
+      <_ContentIncludedByDefault Remove="Components\Pages\Error.razor" />
+      <_ContentIncludedByDefault Remove="Components\Pages\Home.razor" />
+      <_ContentIncludedByDefault Remove="Components\Pages\Weather.razor" />
+      <_ContentIncludedByDefault Remove="Pages\Authentication\Login.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Home.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Posts\CreatePost.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Posts\PostDetails.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Posts\PostList.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Users\RegisterUser.cshtml" />
+      <_ContentIncludedByDefault Remove="Components\Pages\Authentication\Login.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Components\Authentication\Login.cshtml" />
+      <AdditionalFiles Include="Components\Pages\Home.cshtml" />
+      <AdditionalFiles Include="Components\Pages\Posts\CreatePost.cshtml" />
+      <AdditionalFiles Include="Components\Pages\Posts\PostDetails.cshtml" />
+      <AdditionalFiles Include="Components\Pages\Posts\PostList.cshtml" />
+      <AdditionalFiles Include="Components\Pages\Users\RegisterUser.cshtml" />
+    </ItemGroup>
+
+</Project>
